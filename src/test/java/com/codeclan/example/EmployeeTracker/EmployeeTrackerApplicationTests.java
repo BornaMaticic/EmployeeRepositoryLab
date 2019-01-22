@@ -21,7 +21,7 @@ public class EmployeeTrackerApplicationTests {
 
 	@Test
 	public void canSaveEmployee(){
-		Employee chris = new Employee("Chris", 28, 1, "Chris@gmail.com");
+		Employee chris = new Employee("Chris", "Jennings", 1);
 		employeeRepository.save(chris);
 	}
 

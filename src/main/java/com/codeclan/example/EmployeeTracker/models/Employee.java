@@ -1,6 +1,10 @@
 package com.codeclan.example.EmployeeTracker.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Employees")
@@ -12,29 +16,38 @@ public class Employee {
     private Long id;
 
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column(name = "age")
-    private int age;
+    @Column(name = "last_name")
+    private String lastName;
+
 
     @Column(name = "employeeNumber")
     private int employeeNumber;
 
-    @Column(name = "email")
-    private String email;
+    @JsonIgnore
+    @OneToMany(mappedBy = "employees")
+    private List<Project>projects;
 
 
-
-
-
-
-    public Employee(String name, int age, int employeeNumber, String email) {
-        this.name = name;
-        this.age = age;
-        this.employeeNumber = employeeNumber;
-        this.email = email;
+    public List<Project> getProjects() {
+        return projects;
     }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    public Employee(String firstName, String lastName, int employeeNumber) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.employeeNumber = employeeNumber;
+        this.projects = new ArrayList<>();
+
+    }
+
+
 
     public Long getId() {
         return id;
@@ -46,20 +59,21 @@ public class Employee {
 
     public Employee() {}
 
-    public String getName() {
-        return name;
+
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public int getAge() {
-        return age;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getEmployeeNumber() {
@@ -70,11 +84,8 @@ public class Employee {
         this.employeeNumber = employeeNumber;
     }
 
-    public String getEmail() {
-        return email;
+    public void addEmployeeTpProject(Project project){
+        this.projects.add(project);
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
 }
