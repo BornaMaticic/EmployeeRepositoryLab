@@ -37,6 +37,18 @@ public class EverythingTest {
         assertEquals(1,projectRepository.count());
     }
 
+		@Test
+		public void canAddEmployeesToProject() {
+    	projectRepository.deleteAll();
+    	employeeRepository.deleteAll();
+    	Project p = new Project("Secret Project", 100);
+    	Employee e1 = new Employee("Joe","Bloogs",123);
+    	Employee e2 = new Employee("Jin", "Yang", 1);
+    	e1.addEmployeeTpProject(p);
+    	e2.addEmployeeTpProject(p);
+    	assertEquals(1,e1.getProjects().size());
+			assertEquals(1,e2.getProjects().size());
 
+		}
 
 }

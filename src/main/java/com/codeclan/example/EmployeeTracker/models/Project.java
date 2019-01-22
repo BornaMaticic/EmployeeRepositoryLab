@@ -42,7 +42,10 @@ public class Project {
                     updatable = false)}
 
     )
-
     private List<Employee> employees;
+
+	public List<Employee> getEmployees() {
+		return employees;
+	}
 
 }
