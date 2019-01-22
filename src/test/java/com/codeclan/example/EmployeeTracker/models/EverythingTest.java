@@ -12,7 +12,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ProjectTest {
+public class EverythingTest {
 
     @Autowired
     private ProjectRepository projectRepository;
@@ -27,6 +27,14 @@ public class ProjectTest {
         Employee employee = new Employee("Steven", "TheAwesome", 49168);
         employeeRepository.save(employee);
         assertEquals(1, employeeRepository.count());
+    }
+
+    @Test
+    public void canSaveProject() {
+        projectRepository.deleteAll();
+        Project proj = new Project("Skunkworks", 120);
+        projectRepository.save(proj);
+        assertEquals(1,projectRepository.count());
     }
 
 

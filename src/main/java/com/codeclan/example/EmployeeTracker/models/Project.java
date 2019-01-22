@@ -20,6 +20,12 @@ public class Project {
     @Column(name = "durationDays")
     private int durationDays;
 
+    public Project(String name, int durationDays) {
+        this.name = name;
+        this.durationDays = durationDays;
+    }
+
+    public Project() {};
 
     @JsonIgnore
     @ManyToMany
